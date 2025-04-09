@@ -68,7 +68,7 @@ language-detector/
 │   └── index.html          # Frontend template
 ├── static/
 │   └── bg2.jpeg            # Background image
-├── langdetect.csv          # Dataset (not included here)
+├── langdetect.csv          # Dataset 
 ├── app.py                  # Flask web app
 ├── train.py          # Script to train and save the model
 ├── language_model.pkl      # Trained model
