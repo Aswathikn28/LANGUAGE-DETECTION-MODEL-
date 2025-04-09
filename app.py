@@ -4,13 +4,13 @@ import joblib
 import numpy as np
 import sklearn
 
-# Initialize Flask app
+
 app = Flask(__name__)
 
-# Confirm scikit-learn version
-print("scikit-learn version:", sklearn.__version__)  # Should output 1.5.1
 
-# Load the trained model and TF-IDF vectorizer
+print("scikit-learn version:", sklearn.__version__) 
+
+
 try:
     model = joblib.load('language_model.pkl')
     tfidf = joblib.load('tfidf_vectorizer.pkl')
@@ -19,7 +19,7 @@ except Exception as e:
     print(f"Error loading model or vectorizer: {e}")
     exit()
 
-# Define the preprocessing function (must match training)
+ 
 def preprocess_text(text, language='English'):
     latin_languages = ['English', 'French', 'Spanish', 'Portugeese', 'Italian', 
                        'Sweedish', 'Dutch', 'German', 'Danish']
@@ -36,7 +36,7 @@ def predict_language(text):
     prediction = model.predict(text_vector)
     return prediction[0]
 
-# Route for the home page
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     prediction = None
@@ -50,6 +50,6 @@ def home():
                 prediction = f"Error: {str(e)}"
     return render_template('index.html', prediction=prediction, input_text=input_text)
 
-# Run the app
+
 if __name__ == '__main__':
     app.run(debug=True)
